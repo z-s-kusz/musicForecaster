@@ -5,7 +5,7 @@ let cheerio = require('cheerio');
 let moment = require('moment');
 let rp = require('request-promise');
 
-let redirectURI = 'http://localhost:5000';
+let redirectURI = 'http://localhost:5000'; // 'http://herokuthing.app.com'
 let clientID = '6e1a767d1d594eb2a64e8ea872069b19';
 let secretID = '*secret*'; //plz remember not to commit to github
 let maxSpotifyArtists = 50; //max number of artists returned from a single spotify followed artists call
@@ -170,7 +170,6 @@ let parseInfo = async function(fullHTML) {
 }
 
 router.get('/getAlbums', (req, res) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
     getAlbums().then(data => {
         if (data) {
             res.send(data);

@@ -12,6 +12,7 @@ function ($scope, $http) {
     $scope.message = '';
     $scope.userForecast = [];
     let lastLoadedTime;
+    let baseURL = 'http://localhost:5000'; // 'http://herokustuff.com'
 
     checkLocalStorage().then(() => {
         parseSpotifyResponse();
@@ -50,7 +51,7 @@ function ($scope, $http) {
         $scope.message = 'Loading Albums...';
         $http({
             method: 'GET',
-            url: 'http://localhost:5000/anticipatedAlbums/getAlbums'
+            url: baseURL + '/anticipatedAlbums/getAlbums'
         }).then((res, err) => {
             if (res.data) {
                 $scope.albums = res.data;
@@ -71,7 +72,7 @@ function ($scope, $http) {
     function getArtists(code) {
         $http({
             method: 'GET',
-            url: 'http://localhost:5000/anticipatedAlbums/getArtists',
+            url:  baseURL + '/anticipatedAlbums/getArtists',
             params: { 'code': code }
         }).then((res, err) => {
             if (res.data) {
@@ -110,7 +111,7 @@ function ($scope, $http) {
 
     $scope.connectSpotify = function () {// spotify step 1 - the rest on backend
         let clientID = '6e1a767d1d594eb2a64e8ea872069b19';
-        let redirectURI = 'http://localhost:5000';
+        let redirectURI = baseURL;
         let scope = 'user-follow-read';
 
         let url = 'https://accounts.spotify.com/authorize/'
