@@ -1,6 +1,7 @@
 mainApp.controller('LandingPageController', ['$scope', '$http', '$route', '$routeParams',
 function ($scope, $http) {
 
+    $scope.activeTab = 'ar';
     $scope.albums = {
         allReleaseDates: [],
         anticipatedAlbums: []
@@ -10,6 +11,7 @@ function ($scope, $http) {
     $scope.loadedAlbums = false;
     $scope.loadedArtists = false;
     $scope.message = '';
+    $scope.spotifyMessage = 'Connect Spotify Followed Artists List';
     $scope.userForecast = [];
     let lastLoadedTime;
     let baseURL = 'http://localhost:5000'; // 'http://herokustuff.com'
@@ -78,6 +80,7 @@ function ($scope, $http) {
             if (res.data) {
                 $scope.loadedArtists = true;
                 $scope.followedArtists = res.data;
+                $scope.spotifyMessage = 'Connect A Different Spotify Account';
                 buildUsersForecast($scope.albums.anticipatedAlbums, $scope.followedArtists);
             } else {
                 console.log('Error', err);
@@ -122,6 +125,10 @@ function ($scope, $http) {
             + '&show_dialog=true';
 
         window.location.href = url;
+    }
+
+    $scope.changeTabs = function(tab) {
+        $scope.activeTab = tab;
     }
 
 }]);

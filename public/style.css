@@ -1,20 +1,54 @@
-h1 {
-    color: rgb(216, 114, 19);
-}
-
-h3 {
+h1, h2, h3, button {
+    color: rgb(255, 103, 9);
     margin: 8px;
 }
 
-p {
+button:focus {
+    outline: none;
+}
+
+body {
+    background-color: rgb(255, 246, 238);
     margin: 4px;
 }
 
-button {
-    margin-bottom: 8px;
+.header-flex-container {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    background-color: rgb(255, 190, 115);
+    justify-content: space-around;
 }
 
-.allAlbums {
-    width: 50%;
-    border: 2px solid black;
+.body-flex-container {
+    display: flex;  
+    flex-flow: row wrap;
+    text-align: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.tab {
+    color: rgb(255, 103, 9);
+    background-color: white;
+    margin: auto;
+    border-radius: 5px 5px 0px 0px;
+}
+
+h3 {
+    background-color: rgb(255, 190, 115);
+}
+
+th, td {
+    text-align: left;
+    padding: 4px 22px 4px 0px;
+}
+
+tr:nth-child(even) {
+    background-color: white;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
 }

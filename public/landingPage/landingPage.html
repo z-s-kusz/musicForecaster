@@ -1,37 +1,62 @@
-<h1>Welcome To Music Forecaster v2.0!</h1>
-<div>
-    <h1>{{message}}</h1>
-</div>
+<div class="header-flex-container">
+    <h1>Welcome To Music Forecaster v2.0!</h1>
+    <h1 ng-hide="message.length < 1">{{message}}</h1>
 
-<div ng-if="loadedAlbums">
-    <button ng-click="connectSpotify()">Connect To Spotify</button>
-</div>
+    <div ng-if="loadedAlbums">
+        <button ng-click="connectSpotify()">{{spotifyMessage}}</button>
+    </div>
 
-<div ng-if="loadedArtists">
-    <h2>Local Forecast</h2>
-    <div ng-repeat="release in userForecast">
-        <p>{{release.albumName}}</p>
-        <p>By {{release.artistName}}</p>
-        <p>{{release.releaseDate}}</p>
-        <p>- - - - - - - - -</p>
+    <div>
+    <button class="tab" ng-click="changeTabs('ar')">All Releases</button>
+    <button class="tab" ng-click="changeTabs('yr')">Your Releases</button>
+    <button class="tab" ng-click="changeTabs('ya')">Your Artists</button>
     </div>
 </div>
 
-<div class="allAlbums">
-    <h2>General Forecast</h2>
-    <div ng-repeat="date in collectedByDate">
-        <h3>Date: {{albums.allReleaseDates[$index]}}</h3>
-        <div ng-repeat="album in date">
-            <p>Album: {{album.albumName}}</p>
-            <p>Artist: {{album.artistName}}</p>
-            <p>- - - - - - - -</p>
+<div class="body-flex-container">
+    <div ng-if="activeTab==='yr'">
+        <h2>Your Upcoming Releases</h2>
+        <p ng-if="loadedArtists && userForecast.length < 1">No releases found</p>
+        <p ng-if="!loadedArtists">No Spotify account connected</p>
+        <table ng-if="loadedArtists">
+            <tr>
+                <th>Artist</th>
+                <th>Album</th>
+                <th>Date</th>
+            </tr>
+            <tr ng-repeat="release in userForecast">
+                <td>{{release.artistName}}</td>
+                <td>{{release.albumName}}</td>
+                <td>{{release.releaseDate}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div ng-if="activeTab==='ar'">
+        <h2>All Upcoming Releases</h2>
+            <div ng-repeat="date in collectedByDate">
+                <h3>Date: {{albums.allReleaseDates[$index]}}</h3>
+                <table>
+                    <tr>
+                        <th>Artist</th>
+                        <th>Album</th> 
+                    </tr>
+                    <tr ng-repeat="album in date">
+                        <td>{{album.albumName}}</td>
+                        <td>{{album.artistName}}</td>
+                    </tr>
+                </table>
+            </div>
+    </div>
+
+    <div ng-if="activeTab==='ya'">
+        <h2>Your Folowed Spotify Artists</h2>
+        <p ng-if="followedArtists.length < 1 && loadedArtists">
+            0 followed artists
+        </p>
+        <p ng-if="!loadedArtists">No Spotify account connected</p>
+        <div ng-repeat="artist in followedArtists">
+            <p>{{artist}}</p>
         </div>
-    </div>
-</div>
-
-<div ng-if="loadedArtists">
-    <h3>Your Folowed Spotify Artists:</h3>
-    <div ng-repeat="artist in followedArtists">
-        <p>{{artist}}</p>
     </div>
 </div>
