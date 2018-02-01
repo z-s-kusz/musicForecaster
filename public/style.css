@@ -1,0 +1,20 @@
+h1 {
+    color: rgb(216, 114, 19);
+}
+
+h3 {
+    margin: 8px;
+}
+
+p {
+    margin: 4px;
+}
+
+button {
+    margin-bottom: 8px;
+}
+
+.allAlbums {
+    width: 50%;
+    border: 2px solid black;
+}

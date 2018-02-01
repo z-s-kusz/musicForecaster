@@ -1,0 +1,23 @@
+{
+  "name": "musicscraper1",
+  "version": "1.0.0",
+  "description": "scrape the metacritic music releases api",
+  "main": "app.js",
+  "scripts": {
+    "test": "node ./src/scraper.js"
+  },
+  "keywords": [
+    "scrape",
+    "cheerio"
+  ],
+  "author": "Zach Kusz",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.2",
+    "moment": "^2.20.1",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  }
+}

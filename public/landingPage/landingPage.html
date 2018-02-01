@@ -1,0 +1,37 @@
+<h1>Welcome To Music Forecaster v2.0!</h1>
+<div>
+    <h1>{{message}}</h1>
+</div>
+
+<div ng-if="loadedAlbums">
+    <button ng-click="connectSpotify()">Connect To Spotify</button>
+</div>
+
+<div ng-if="loadedArtists">
+    <h2>Local Forecast</h2>
+    <div ng-repeat="release in userForecast">
+        <p>{{release.albumName}}</p>
+        <p>By {{release.artistName}}</p>
+        <p>{{release.releaseDate}}</p>
+        <p>- - - - - - - - -</p>
+    </div>
+</div>
+
+<div class="allAlbums">
+    <h2>General Forecast</h2>
+    <div ng-repeat="date in collectedByDate">
+        <h3>Date: {{albums.allReleaseDates[$index]}}</h3>
+        <div ng-repeat="album in date">
+            <p>Album: {{album.albumName}}</p>
+            <p>Artist: {{album.artistName}}</p>
+            <p>- - - - - - - -</p>
+        </div>
+    </div>
+</div>
+
+<div ng-if="loadedArtists">
+    <h3>Your Folowed Spotify Artists:</h3>
+    <div ng-repeat="artist in followedArtists">
+        <p>{{artist}}</p>
+    </div>
+</div>
