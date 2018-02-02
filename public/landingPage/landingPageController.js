@@ -1,4 +1,4 @@
-mainApp.controller('LandingPageController', ['$scope', '$http', '$route', '$routeParams',
+mainApp.controller('LandingPageController', ['$scope', '$http',
 function ($scope, $http) {
 
     $scope.activeTab = 'ar';
@@ -11,10 +11,10 @@ function ($scope, $http) {
     $scope.loadedAlbums = false;
     $scope.loadedArtists = false;
     $scope.message = '';
-    $scope.spotifyMessage = 'Connect Spotify Followed Artists List';
+    $scope.spotifyMessage = 'Connect Spotify';
     $scope.userForecast = [];
     let lastLoadedTime;
-    let baseURL = 'http://localhost:5000'; // 'http://herokustuff.com'
+    let baseURL = 'http://localhost:5000';
 
     checkLocalStorage().then(() => {
         parseSpotifyResponse();
@@ -80,7 +80,7 @@ function ($scope, $http) {
             if (res.data) {
                 $scope.loadedArtists = true;
                 $scope.followedArtists = res.data;
-                $scope.spotifyMessage = 'Connect A Different Spotify Account';
+                $scope.spotifyMessage = 'Connect Different Spotify Account';
                 buildUsersForecast($scope.albums.anticipatedAlbums, $scope.followedArtists);
             } else {
                 console.log('Error', err);
@@ -129,6 +129,14 @@ function ($scope, $http) {
 
     $scope.changeTabs = function(tab) {
         $scope.activeTab = tab;
+        angular.element(document.getElementsByClassName('ar')).removeClass('selected');
+        angular.element(document.getElementsByClassName('yr')).removeClass('selected');
+        angular.element(document.getElementsByClassName('ya')).removeClass('selected');
+        angular.element(document.getElementsByClassName(tab)).addClass('selected');
+
     }
+    angular.element(() => {
+        angular.element(document.getElementsByClassName('ar')).addClass('selected');
+    });
 
 }]);

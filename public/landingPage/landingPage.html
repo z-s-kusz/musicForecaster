@@ -1,15 +1,15 @@
 <div class="header-flex-container">
     <h1>Welcome To Music Forecaster v2.0!</h1>
-    <h1 ng-hide="message.length < 1">{{message}}</h1>
+    <h3 ng-hide="message.length < 1">{{message}}</h3>
 
     <div ng-if="loadedAlbums">
         <button ng-click="connectSpotify()">{{spotifyMessage}}</button>
     </div>
 
-    <div>
-    <button class="tab" ng-click="changeTabs('ar')">All Releases</button>
-    <button class="tab" ng-click="changeTabs('yr')">Your Releases</button>
-    <button class="tab" ng-click="changeTabs('ya')">Your Artists</button>
+    <div class="tab-container">
+        <button class="tab ar" ng-click="changeTabs('ar')">All Releases</button>
+        <button class="tab yr" ng-click="changeTabs('yr')">Your Releases</button>
+        <button class="tab ya" ng-click="changeTabs('ya')">Your Artists</button>
     </div>
 </div>
 
@@ -35,7 +35,7 @@
     <div ng-if="activeTab==='ar'">
         <h2>All Upcoming Releases</h2>
             <div ng-repeat="date in collectedByDate">
-                <h3>Date: {{albums.allReleaseDates[$index]}}</h3>
+                <h3>{{albums.allReleaseDates[$index]}}</h3>
                 <table>
                     <tr>
                         <th>Artist</th>
@@ -50,7 +50,7 @@
     </div>
 
     <div ng-if="activeTab==='ya'">
-        <h2>Your Folowed Spotify Artists</h2>
+        <h2>Your Followed Spotify Artists</h2>
         <p ng-if="followedArtists.length < 1 && loadedArtists">
             0 followed artists
         </p>
