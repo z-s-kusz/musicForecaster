@@ -12,4 +12,5 @@ I've spent many hours browsing a certain site that lists anticipated album relea
 
 # What's Next?
 1. Move reading params to backend.
-2. Read what a users artists are from other sources, like saved songs
+2. Fix undated albums bug.
+3. Read what a users artists are from other sources, like saved songs.
